@@ -1,0 +1,320 @@
+Install .net sdk,git
+
+ctl+shift+P
+    //type code for add path,then only it work from cmd 
+code .
+cd..  /just back
+just open a empty folde with code .
+add extrension
+     c# by omni sharp
+	c# extensions
+	material theme
+	SQlite
+ctr+shoft+p  relaod window
+
+
+skinet dotnet build
+api> dotnet watch run
+
+
+web api  =>Infrastructre=>Core
+Api-i receive http request and respond to them
+Infrastructre
+communicate with db sendqueires and get data
+COre
+cotain bussiness entities.I do not depend on anything else.
+
+dotnet -h
+
+dotnet new -h    //new project help
+dotnet new sln
+dotnet new webapi -o API
+
+dotnet sln -h
+//need to add directory
+
+
+>dotnet sln add API 
+
+
+
+cerificate 
+dotnet dev-certs https -t
+
+
+running
+dotnet watch run //auto restart when change occure
+dotnet run
+
+Install Entity
+
+ctl+Shift+p
+add nugetpackage
+Microsoft.EntityFrameworkcore
+
+In cmd dotnet --info
+       check version install
+
+Microsoft.EntityFrameworkcore sqlite //note insatll sqlcore
+
+or 
+dotnet restore
+
+dotnet watch run
+
+
+DbContext is a combination of the Unit Of Work and Repository patterns.
+
+
+
+we need a dotnet command line tool for ef
+
+
+dotnet tool install --global dotnet-ef --version 3.1.104 //note work for me
+//dotnet tool install --global dotnet-ef
+
+add by nuget packages
+Microsoft.EntityFrameworkCore.Design
+
+dotnet ef migrations add InitialCreate -o Data/Migrations
+
+dotnet ef database update
+==================
+add new solution Core and Infrastructure
+
+\skinet\API\cd..
+\skinet
+   dotnet new classlib -o Core
+
+
+\skinet>dotnet new classlib -o Infrastructure
+
+add to solution
+skinet>dotnet sln add Infrastructure
+\skinet>dotnet sln add Core  
+
+
+//need add references
+
+cd..
+C:\AngularProjects\skinet>cd Api
+C:\AngularProjects\skinet\API>dotnet add reference ../Infrastructure
+cd..
+cd Infrastructure
+C:\AngularProjects\skinet\Infrastructure>dotnet add reference ../Core
+cd..
+C:\AngularProjects\skinet>dotnet restore
+
+
+Git
+===
+skinet git status
+git init
+
+create a file .gitignore  ,put that file like obj,bin,appsettings.json,*.db
+git add .
+git commit -m "Initial Commit"
+
+
+
+echo "# sknet" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/abhilashkuttath/sknet.git
+git push -u origin main
+
+
+Repository pattern
+===========
+decoupl bussiness code and  datat access
+seperation of concern
+minimize  duplicat equery logic
+increase level of abstaraction.
+Increse manitainability,flexibility,testability.
+More classes/Interface less duplicate code
+
+============
+when we returning more specific IReadOnlyList
+
+
+startup configure service no order at all
+but In confugure oreder is importatant
+
+
+need to choos lifetime  ,our repository injected to controllers
+AddTransient =instanciated for individual methods short life time
+singleton= instance application when application start,nd never destroy utill app shut down.
+Addscoped =created when http request come to api,when request is finished ,it dispose the contyroller and repository.
+
+Database drop and 
+=================
+cd..
+skynet>dotnet ef database drop -p infrastructure -s API
+skinet>dotnet ef migrations remove -p Infrastructure -s API
+
+
+skinet>dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+
+
+================================
+.find not work with IEnumerable ,
+.firstOrdefault   = if not extst deafult values
+.sinleor default  = if exist more then once return exception.
+
+git add .
+git commit -m "End of section 3"
+git push -u origin main
+
+
+Genric Repositiry
+=================
+may use badly ,when need serverside filtering and pagination we use additional specific pattern.
+
+public interface IGenricRepository<T> where  T: baseEntity
+       //base enity is a restriction or constraint means can only use base entity class or derived from base entity.
+Dto(Data transfer object)
+===========================
+It s container between layer, It flatten data which give to client.
+product brand Id,nd product type id not want to give client, strigify product brand not as object.
+=====================================
+ public async Task<ActionResult<List<ProductToReturnDto>>>  GetProducts()
+        {
+            var products=await _repo.GetProductsAsync();
+         // return Ok(products);
+         return products.Select(product => new ProductToReturnDto
+         {
+              Id=product.Id,
+                Name=product.Name,
+                Description=product.Description,
+                PictureUrl=product.PictureUrl,
+                Price=product.Price,
+                ProductBrand=product.ProductBrand.Name,
+                ProductType=product.ProductType.Name
+         }).ToList();
+
+        }
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<ProductToReturnDto>>GetProduct(int id)
+        {
+            var product= await _repo.GetProductbyIdAsync(id);
+            return new ProductToReturnDto
+            {
+                Id=product.Id,
+                Name=product.Name,
+                Description=product.Description,
+                PictureUrl=product.PictureUrl,
+                Price=product.Price,
+                ProductBrand=product.ProductBrand.Name,
+                ProductType=product.ProductType.Name
+
+                
+            };
+        }
+--------------------------------------------------------
+Nuget package 
+add package
+AutoMapper.Extesnsion.Microsoft
+
+
+
+adding custome value ressolver
+serving static content
+
+git add .
+git commit -m "End session 4"
+git push -u origin main
+
+
+
+Error Handling Serverside
+==============================
+
+
+
+Adding swagger
+==============
+nuget add Swashbuckle
+install Swashbuckle.AspNetCOre.SwaggerGen     5.00
+install Swashbuckle.AspNetCOre.SwaggerUI	5.00
+
+From last to first
+green
+blue
+red
+copper
+
+
+================================
+https://localhost:5001/api/Products?priceDsc&brandId=2&typeId=3
+
+
+
+
+
+
+
+
+Angular
+-======
+go with node version manager(NVM)
+can move diff verasions
+
+nvm ls
+npm help to load pacvkeges
+
+Angular CLI
+npm install -g @angular/cli
+
+
+
+https://medium.com/@Joachim8675309/installing-node-js-with-nvm-4dc469c977d9
+
+
+
+nvm use 13.7.0
+
+
+npm install @angular/cli 
+//not globely
+
+
+skinte> ng new client
+client>ng serve
+
+
+============
+Enable ssl
+
+in angular json
+ "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "client:build",
+            "sslKey" : "ssl/server.key",
+            "sslCert" : "ssl/server.crt",
+            "ssl" : true
+          },
+
+
+
+copy ssl key and cert in new folder name by ssl in client angular project
+click cert install select root
+
+certmgr.msc   //no use
+
+use ngxbootstrap
+ng add ngx-bootstrap 
+npm install font-awesome
+
+abgular.json
+"styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css",
+              "src/styles.scss"
+            ],
+
+
