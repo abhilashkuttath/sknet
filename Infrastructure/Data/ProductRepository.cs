@@ -17,7 +17,7 @@ namespace Infrastructure.Data
             _context=context;
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync(string sort,int? brandId=null,int? typeId=null,string search=null)
+        public async Task<IReadOnlyList<Product>> GetProductsAsync(int page,int pageSize,string sort,int? brandId=null,int? typeId=null,string search=null)
         {
            var productsQuery= _context.Products
           .Include( p => p.ProductBrand)
@@ -45,6 +45,9 @@ namespace Infrastructure.Data
 
                 }
             }
+            if(pageSize <=0)
+            pageSize=10;
+            productsQuery=productsQuery.Skip((page-1) * pageSize).Take(pageSize);
 
          return await productsQuery.ToListAsync();
 

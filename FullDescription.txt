@@ -318,3 +318,116 @@ abgular.json
             ],
 
 
+
+Add Extension
+
+Angular Language Service
+
+Angular-snipet
+prettier
+Bracket Pair Colorizer 2
+
+tslint
+
+ctr+shift+p
+Developer reload window
+
+
+ng g 
+get all sematics
+
+ng g c --help
+
+cd src/app
+
+*** naming convenstion nav-bar   //no pascal or cammal
+ng g c nav-bar --skip-tests
+
+shift+alt+down
+
+npm install --save @fortawesome/fontawesome-free
+
+ // "font-awesome": "^4.7.0",
+C:\AngularProjects\skinet\client\node_modules\font-awesome\css\font-awesome.min.css
+ "./node_modules/font-awesome/css/css/font-awesome.min.css",
+"@fortawesome/fontawesome-free": "^5.15.1",
+
+
+
+
+
+
+
+
+
+inner div give abslote then outer div should give relative ,for specific movement to div
+
+
+
+https://flexboxfroggy.com/
+
+//for learning flexbox
+
+Enable Cores
+===========
+different origion or diff ip http transfer ,restrict by javascript
+
+
+app componet add
+import { HttpClientModule } from '@angular/common/http';
+import
+HttpClientModule 
+
+Obervable/Promise
+================
+Obervable
+sequence of item thatarrives asynchrounously.
+javascript synchronous in nature
+we need to tell stop the execution untill we receive what we back
+promise
+------
+has one pipeline
+used with async data retuern
+not easy to cancel.
+Obersvable
+----------
+are cancelable,
+stream data in multiple pipeline.
+array like operations.
+can be created from other sources like event,
+they can be subscribe too.
+
+promisw => then  =>success(data)
+			=>Fail
+
+observable  =>cancel
+	    =>fail
+	    =>succeed  =>subsribe() ,map() ,filter()  =>data
+
+============
+Organise file and floders
+-------------------------
+Need to modularize for better separation of concernt
+cd.
+cd client
+cd src/app
+
+ng g m core
+ng g m shop
+ng g m shared
+
+commonModule=>used for ngFor looping
+
+client\src\app\shop\> ng g c shop --flat --skip-tests
+src\app\shop>ng g s shop --skip-tests -flat
+ng g s shop --skip-tests --flat
+ng g m shop-routing --flat
+
+here core is singleton,Navbar is using in every page so navbar drag copy to 
+Angular service are singleton,it atrt when appliocation start.
+
+sub module
+shop>ng g c product-item --skip-tests
+
+
+

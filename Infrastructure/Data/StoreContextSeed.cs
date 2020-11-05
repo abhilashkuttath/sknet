@@ -29,7 +29,7 @@ namespace Infrastructure.Data
             
                  if(!context.ProductTypes.Any())
                 {
-                    var typesData=File.ReadAllText("../Infrastructure/Data/SeedData/brands.json");
+                    var typesData=File.ReadAllText("../Infrastructure/Data/SeedData/types.json");
                     var types=JsonSerializer.Deserialize<List<ProductType>>(typesData);
                     foreach (var item in types)
                     {
@@ -37,7 +37,7 @@ namespace Infrastructure.Data
 
                     }
                     await context.SaveChangesAsync();
-                }
+               }
                      if(!context.Products.Any())
                 {
                     var productsData=File.ReadAllText("../Infrastructure/Data/SeedData/products.json");
