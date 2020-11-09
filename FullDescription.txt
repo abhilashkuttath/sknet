@@ -430,4 +430,19 @@ sub module
 shop>ng g c product-item --skip-tests
 
 
+=================
+Routing
+
+<!-- <app-shop></app-shop> -->
+<router-outlet></router-outlet>
+
+
+ [routerLink]="['/']" routerLinkActive="router-link-active" >Home</a>
+
+routerLink="/shop">Shop</a>
+
+private activatedRoute: ActivatedRoute) { } 
+get access to RouteParameter
+
+
 
