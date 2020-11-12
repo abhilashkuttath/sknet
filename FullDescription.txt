@@ -445,4 +445,22 @@ private activatedRoute: ActivatedRoute) { }
 get access to RouteParameter
 
 
+Interceptor ,handle response from api and handle accordingly.
+
+console ng g // show available names
+add app module providers
+
+500 internal server error
+404 not found
+400 bad request,when submitting user to server give error on some other reason.Toast notification
+400 validation error give,sned form of data and why reject that reason.
+
+
+Toast Notification
+==================
+C:\AngularProjects\skinet\client>npm install ngx-toaster
+
+
+
+
 
