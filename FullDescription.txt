@@ -458,7 +458,81 @@ add app module providers
 
 Toast Notification
 ==================
-C:\AngularProjects\skinet\client>npm install ngx-toaster
+C:\AngularProjects\skinet\client>npm install ngx-toastr
+Navigation sxtra can transfer data throug navigation.
+
+BreadCrumb
+==========
+
+cd src/app/core
+\skinet\client>npm install --save xng-breadcrumb
+
+add import in coremodule
+
+section head component 
+<div class="col-3">
+       <xng-breadcrumb></xng-breadcrumb>
+    </div>
+
+app routing module
+
+const routes: Routes = [
+  {path: '', component: HomeComponent, data: {breadcrumb: 'Home'}},
+  {path: 'test-error', component: TestErrorComponent , data: {breadcrumb: 'Test Errors'}},
+  {path: 'server-error', component: ServerErrorComponent , data: {breadcrumb: 'Server Error'}},
+  {path: 'not-found', component: NotFoundComponent, data: {breadcrumb: 'Not Found'}},
+  {path: 'shop', loadChildren: () => import('./shop/shop.module').then(mod => mod.ShopModule),
+   data: {breadcrumb: 'Shop'}},
+  
+  {path: '**', redirectTo: 'not-found', pathMatch: 'full'}
+
+];
+
+
+======================
+breadcrumbs
+
+ondestroy  is kify cycle hook can distroy objetcs
+http is finite service should have end 
+have rule of thumb sholud use subsribe need to unsubscribe with in it.
+
+In angular automatically do
+async pipe automatically unsubscribe.
+
+
+Bootstrap theme
+===============
+client>npm install bootswatch
+
+in angular.json  add style
+"/node_modules/bootswatch/dist/united/bootstrap.min.css",
+
+instead united we can add diff theme
+
+https://bootswatch.com/
+======================
+Add Delay
+----------
+error interceptor add pipe add delay.
+
+Spinner
+=====
+npm install ngx-spinner
+
+add import app module 
+NgxSpinnerModule
+
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+client> cd src/app/core 
+create folder services ,then create ng g s busy --flat --skip-tests
+
+error native elemnet not found
+ @ViewChild('search', {static: false}) searchTerm: ElementRef;
+
+
+
+
 
 
 
