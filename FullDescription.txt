@@ -529,6 +529,40 @@ create folder services ,then create ng g s busy --flat --skip-tests
 
 error native elemnet not found
  @ViewChild('search', {static: false}) searchTerm: ElementRef;
+=====================
+
+
+Store in Basket 
+================
+Redis 
+ store the customer basket in server memory.
+where to store basket
+	1)Databse
+	2)LOACAL STORAGE
+	3)COOKIES
+	4)Redis
+redis is inmomory datastore ,support string,hashes,list,key value store,
+fast,persist data by using snapshots every minutes,
+data can be given time to live
+great for caching data.
+
+Install in Infrastructure
+
+nuget > stackExchange.redis
+2.0.601
+
+add code in startup
+
+appsettings.developemnt.json
+
+use https://chocolatey.org/ for easy
+in windows go to powrshel run as admin paste that code
+
+
+redis-cli ping
+redis-cli shutdown
+redis-server
+
 
 
 
